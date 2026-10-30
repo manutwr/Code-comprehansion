@@ -1,0 +1,93 @@
+Two Sum – Pair Count (C++)
+
+Problem Statement
+
+Given an array of integers and a target value, count the number of unique index pairs whose sum equals the target.
+
+Example
+
+Input:
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Counts unique index pairs whose sum equals target
+int countPairs(vector<int>& arr, int target) {
+    int count = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        for (int j = i + 1; j < arr.size(); j++) {
+
+            if (arr[i] + arr[j] == target) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    vector<int> arr = {2, 4, 3, 5, 2};
+    int target = 6;
+
+    cout << "Total Pairs: "
+         << countPairs(arr, target) << endl;
+
+    return 0;
+}
+
+arr = {2, 4, 3, 5, 2}
+target = 6
+
+Output:
+
+Total Pairs: 3
+
+Valid Pairs:
+
+- (2, 4)
+- (4, 2) — using the second occurrence of 2
+- (4, 2) — using the last occurrence of 2
+
+Each pair represents different indices, not just different values.
+
+Approach
+
+- Use two nested loops.
+- The outer loop selects the first element.
+- The inner loop starts from "i + 1" to avoid using the same index twice.
+- If the sum equals the target, increment the counter.
+
+Debugging Insight
+
+Original issue:
+
+for (int j = i; j < arr.size(); j++)
+
+Starting from "i" allows the same array index to be used twice.
+
+Fixed version:
+
+for (int j = i + 1; j < arr.size(); j++)
+
+This ensures every pair uses two different indices and avoids counting the same pair in reverse order.
+
+Complexity Analysis
+
+Complexity| Value
+Time| O(n²)
+Auxiliary Space| O(1)
+
+Concepts Practiced
+
+- Arrays and Vectors
+- Nested Loops
+- Two Sum Pattern
+- Duplicate Element Handling
+- Code Comprehension
+- Logical Debugging
+
+Language: C++
+Category: DSA / Problem Solving
