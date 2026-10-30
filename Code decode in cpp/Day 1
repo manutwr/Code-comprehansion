@@ -1,0 +1,71 @@
+Day 01: Find Maximum – Debugging Challenge
+
+Problem
+
+Find the maximum element in a given integer array.
+
+Original Code (Contains a Bug)
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int findMax(vector<int>& arr) {
+    int maxi = 0;
+
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] > maxi) {
+            maxi = arr[i];
+        }
+    }
+
+    return maxi;
+}
+
+int main() {
+    vector<int> arr = {-8, -3, -12, -5};
+
+    cout << findMax(arr);
+
+    return 0;
+}
+
+Test Case
+
+Input:
+
+-8 -3 -12 -5
+
+Expected Output:
+
+-3
+
+Actual Output:
+
+0
+
+Bug Identified
+
+The problem is in this line:
+
+int maxi = 0;
+
+The variable "maxi" is initialized with 0.
+
+Since all array elements are negative, none of them is greater than 0. Therefore, "maxi" never gets updated.
+
+Correct Approach
+
+Initialize "maxi" with the first element of the array:
+
+int maxi = arr[0];
+
+Alternatively, use "INT_MIN" after checking that the array is not empty.
+
+Key Learning
+
+- Always consider negative numbers.
+- Test edge cases.
+- Choose appropriate initial values.
+- Never assume array elements are positive.
+- Understand the difference between actual output and expected output.
